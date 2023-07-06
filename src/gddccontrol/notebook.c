@@ -669,22 +669,13 @@ void create_monitor_manager(struct monitorlist* monitor)
 	
 	monitor_manager = table;
 	
-	if (mon->fallback) {
+	if (mon->fallback == 1) {
 		/* Put a big warning. */
 		gchar* message;
-		if (mon->fallback == 1) {
-			message = g_strdup(_(
-				"There is no support for your monitor in the database, but ddccontrol is "
-				"using a generic profile for your monitor's manufacturer. Some controls "
-				"may not be supported, or may not work as expected.\n"));
-		}
-		else { /*if (mon->fallback == 2) {*/
-			message = g_strdup(_(
-				"There is no support for your monitor in the database, but ddccontrol is "
-				"using a basic generic profile. Many controls will not be supported, and "
-				"some controls may not work as expected.\n"));
-		}
-
+		message = g_strdup(_(
+			"There is no support for your monitor in the database, but ddccontrol is "
+			"using a generic profile for your monitor's manufacturer. Some controls "
+			"may not be supported, or may not work as expected.\n"));
 		gchar* tmp = g_strconcat("<span size='large' weight='ultrabold'>", _("Warning!"), "</span>\n\n", 
 				message, _(
 				"Please update ddccontrol-db, or, if you are already using the latest "
@@ -698,7 +689,7 @@ void create_monitor_manager(struct monitorlist* monitor)
 		g_free(message);
 		g_free(tmp);
 	}
-	else {
+	else { /*if (mon->fallback == 2) else () {*/
 		set_message("");
 		gtk_widget_show(monitor_manager);
 	}

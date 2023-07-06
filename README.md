@@ -1,8 +1,19 @@
-[![Build Status][travis-badge]][travis]
+### The changes are minor
+* no more warning at startup using gddccontrol if the generic profile (basic, not by manufacturer) is used, thus less annoying if otherwise the use is possible
 
-[travis-badge]: https://travis-ci.org/ddccontrol/ddccontrol.svg?branch=master
-[travis]: https://travis-ci.org/ddccontrol/ddccontrol
-
+### Installation from source: Arch Linux
+```shell
+# AUR remove : ddccontrol ddc control-git
+# AUR install : ddccontrol-db-git
+sudo pacman -S autoconf automake git intltool libxml2 pciutils
+git clone https://github.com/enigamus/ddccontrol.git
+cd ddccontrol
+./autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+```
+---
 
 # DDC/CI control
 
